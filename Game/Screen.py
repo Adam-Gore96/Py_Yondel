@@ -1,3 +1,5 @@
+import os
+
 import pygame
 import sys
 
@@ -8,7 +10,7 @@ from Game import mainGame
 
 class Screen:
 
-    global mouse
+
     pygame.init()
 
     white = (255, 255, 255)
@@ -35,6 +37,7 @@ class Screen:
 
     new_game_text = smallfont.render('New', True, white)
     login_game_text = smallfont.render('Login', True, white)
+    Gamestart = mainGame
 
     while True:
 
@@ -52,10 +55,12 @@ class Screen:
                 # button the game is terminated
 
                 if width/2 <= mouse[0] <= width/2+140 and height/2 <= mouse[1] <= height/2+40:
-                    Gamestart = mainGame
-                    Gamestart.Games.login("new")
 
-         # fills the screen with a color
+                    Gamestart.Games.login("new")
+                elif width/4 <= mouse[0] <= width/4+140 and height/2 <= mouse[1] <= height/2+40:
+                    Gamestart.Games.login("saved")
+
+            # fills the screen with a color
 
         screen.fill(black)
 
@@ -66,22 +71,25 @@ class Screen:
         # if mouse is hovered on a button it
         # changes to lighter shade
         if width/2 <= mouse[0] <= width/2+140 and height/2 <= mouse[1] <= height/2+40:
-            pygame.draw.rect(screen,button_color_light,[width/2,height/2,140,40])
+            pygame.draw.rect(screen, button_color_light, [width/2, height/2, 140, 40])
 
-        else:
-            pygame.draw.rect(screen,button_color_dark,[width/2,height/2,140,40])
+        elif width/4 <= mouse[0] <= width/4+140 and height/2 <= mouse[1] <= height/2+40:
+            pygame.draw.rect(screen, button_color_light, [width/4, height/2, 140, 40])
+
+        elif ((width/2 <= mouse[0] <= width/2+140 and height/2 <= mouse[1] <= height/2+40) and not  (width/4 <= mouse[0] <= width/4+140 and height/2 <= mouse[1] <= height/2+40)):
+            pygame.draw.rect(screen, button_color_dark, [width/4, height/2, 140, 40])
 
             screen.blit(login_game_text, (width/2, height/2))
+            screen.blit(new_game_text, (width/4, height /2))
 
             # superimposing the text onto our button
 
-        if width/2 <= mouse[0] <= width/2+140 and height/2 <= mouse[1] <= height/2+40:
-            pygame.draw.rect(screen,button_color_light,[width/2,height/2,140,40])
+        file = 'songs.mp3'
+        pygame.mixer.init()
+        pygame.mixer.music.load(file)
+        pygame.mixer.music.play()
+        pygame.event.wait()
 
-        else:
-            pygame.draw.rect(screen,button_color_dark,[width/2,height/2,140,40])
-
-            screen.blit(new_game_text, (width/2+40, height/2 +5))
 
         pygame.display.update()
 
