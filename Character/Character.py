@@ -18,6 +18,8 @@ class Character:
     stats["intellect"] = 10
     stats["spirit"] = 10
 
+    cars = [1, 3, 4, 5, 6, 8, 9, 10, 22, 32, 8, 9, 0]
+
     def add_stats(self, stat, number_of_stats, damage_type):
         stat_type = stat
         stat_change = number_of_stats
@@ -27,9 +29,6 @@ class Character:
             self.stats[stat_type] -= stat_change
         elif damage_type == 1:
             self.stats[stat_type] += stat_change
-
-
-
 
     def attack_power_conversion(self):
         count = 0

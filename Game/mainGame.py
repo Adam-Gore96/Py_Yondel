@@ -1,15 +1,14 @@
-import MySQLdb
-import mysql.connector
-import self as self
+import pymysql
+
 
 import Part_One
 
 
 # Connect
-db = MySQLdb.connect(host="localhost",
+db = pymysql.connect(host="localhost",
                      user="root",
-                     passwd="password",
-                     db="yondel_game")
+                     passwd="Belynadron1!",
+                     db="py_yondel")
 
 cursor = db.cursor()
 

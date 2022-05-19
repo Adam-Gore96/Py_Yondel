@@ -1,0 +1,22 @@
+use py_yondel;
+
+create table players (player_id INT PRIMARY KEY AUTO_INCREMENT,
+username varchar(40),
+password varchar(40),
+gamestate int not null);
+
+create table characters(character_id Int primary key Auto_increment,
+player_id int,
+name varchar(100),
+level int,
+exp int,
+class varchar(40),
+health int not null,
+weapon_id int,
+armor_id int,
+vitality int not null,
+strength int not null,
+dexterity int not null,
+intellect int not null,
+spirit int not null,
+FOREIGN KEY(player_id) REFERENCES players(player_id));
